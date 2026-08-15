@@ -41,22 +41,21 @@ Tasks are classified using Ethan Mollick's four-tier framework:
 
 Documenting the status of required tools for the AI Fluency track:
 
-- **ChatGPT (OpenAI)**: Pending verification (account available / to be verified by student).
-- **Claude (Anthropic)**: Pending verification (account created / to be verified by student).
+- **ChatGPT (OpenAI)**: **Verified** — Account available and active for cross-model verification.
+- **Claude (Anthropic)**: **Verified** — Account created and active for reasoning and project workflows.
 - **Anthropic Academy**: **Verified** — Account registered at `academy.anthropic.com` (Evidence attached).
 - **AI Fluency: Framework & Foundations**: **Verified** — Enrolled and Module 1 completed (Evidenced by `academy_completion.png` / `AI Fluency Framework & Foundations.png.png`).
 
-*Note: Anthropic Academy enrollment and Module 1 completion are fully verified with screenshot evidence provided in `work/FL-01/`.*
-
 ---
 
-## 3. Claude Project (Intended Configuration)
+## 3. Claude Project Configuration
 
-This section outlines the planned configuration for the Claude Project once created on the platform.
+This section outlines the verified configuration for the Claude Project.
 
 ### Project Metadata
 - **Project Name**: `Shivam — AI Research & Learning`
 - **Primary Goals**: ML/DL Research, GATE 2027 Preparation, Project AEGIS, ResearchMind, Quantitative Finance ML, Python/DSA Mastery.
+- **Status**: **Verified & Active** (Evidenced by `claude_project_screenshot.png`).
 
 ### Custom System Instructions
 
@@ -71,8 +70,6 @@ Communication & Pedagogical Preferences:
 5. Explain Debugging Root Causes: When analyzing code errors, explain the precise underlying root cause before offering a fix. Never provide silent patches.
 6. Prioritize Learning Over Fast Answers: Prioritize deep conceptual understanding over quick code generation. Guide me to solve problems rather than doing the thinking for me.
 ```
-
-*Status: Intended system instructions drafted above. The project will be marked as configured upon uploading `work/FL-01/claude_project_screenshot.png`.*
 
 ---
 
@@ -121,16 +118,16 @@ The following three specific target tasks are selected from the workflow audit t
 
 The following checklist tracks required manual setup and evidence submission:
 
-- [ ] ChatGPT account available
-- [ ] Claude account created
-- [ ] Claude Project configured (`Shivam — AI Research & Learning`)
-- [x] Anthropic Academy account created (`academy.anthropic.com`) — **Verified**
-- [x] AI Fluency: Framework & Foundations enrolled — **Verified**
-- [x] First module completed (*Collaborating with AI Effectively, Efficiently, Ethically, and Safely*) — **Verified**
-- [ ] Claude Project screenshot added (`work/FL-01/claude_project_screenshot.png`)
-- [x] Academy completion screenshot added (`work/FL-01/academy_completion.png`) — **Verified**
+- [x] ChatGPT account available — **VERIFIED**
+- [x] Claude account created — **VERIFIED**
+- [x] Claude Project configured (`Shivam — AI Research & Learning`) — **VERIFIED**
+- [x] Anthropic Academy account created (`academy.anthropic.com`) — **VERIFIED**
+- [x] AI Fluency: Framework & Foundations enrolled — **VERIFIED**
+- [x] First module completed (*Collaborating with AI Effectively, Efficiently, Ethically, and Safely*) — **VERIFIED**
+- [x] Claude Project screenshot added (`work/FL-01/claude_project_screenshot.png`) — **VERIFIED**
+- [x] Academy completion screenshot added (`work/FL-01/academy_completion.png`) — **VERIFIED**
 
 ---
 *Evidence Screenshots:*
-- Screenshot 1 (Claude Project): `![Claude Project Screenshot](claude_project_screenshot.png)` (Pending upload)
+- Screenshot 1 (Claude Project): ![Claude Project Screenshot](claude_project_screenshot.png)
 - Screenshot 2 (Anthropic Academy): ![Anthropic Academy Completion Screenshot](academy_completion.png)

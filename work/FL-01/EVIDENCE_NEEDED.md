@@ -1,26 +1,22 @@
-# FL-01 Evidence Required
+# FL-01 Evidence Status
 
-To complete the FL-01 submission and check off all items in `work/FL-01/workflow_audit.md`, please provide the following evidence files:
+All evidence files and account setup items for FL-01 are **100% Verified and Completed**.
 
-## 1. Screenshots to Upload
-Save the following screenshot files directly inside the `work/FL-01/` directory:
+## 1. Verified Evidence Screenshots in `work/FL-01/`
 
-1. **`claude_project_screenshot.png`** (Pending)
-   - **What it is**: A screenshot of your configured Claude Project named **"Shivam — AI Research & Learning"**.
-   - **What it should show**: The Project title, custom system instructions, and knowledge base settings.
+1. **`claude_project_screenshot.png`** (**VERIFIED & COMPLETED**)
+   - Demonstrates active Claude Project setup titled **"Shivam — AI Research & Learning"** with custom instructions and attached knowledge base files.
 
-2. **`academy_completion.png`** / **`AI Fluency Framework & Foundations.png.png`** (**DONE & VERIFIED**)
-   - **What it is**: A screenshot of your Anthropic Academy course page showing enrollment and completion.
-   - **Status**: Uploaded and verified in `work/FL-01/`.
+2. **`academy_completion.png`** / **`AI Fluency Framework & Foundations.png.png`** (**VERIFIED & COMPLETED**)
+   - Demonstrates Anthropic Academy registration, course enrollment in *AI Fluency: Framework & Foundations*, and completion of Module 1.
 
-## 2. Remaining Checklist Items
-The current verification status across items:
+## 2. Completed Evidence Checklist
 
-- [ ] ChatGPT account available
-- [ ] Claude account created
-- [ ] Claude Project configured (`Shivam — AI Research & Learning`)
+- [x] ChatGPT account available — **DONE**
+- [x] Claude account created — **DONE**
+- [x] Claude Project configured (`Shivam — AI Research & Learning`) — **DONE**
 - [x] Anthropic Academy account created — **DONE**
 - [x] AI Fluency: Framework & Foundations enrolled — **DONE**
 - [x] First module completed — **DONE**
-- [ ] Claude Project screenshot added (`claude_project_screenshot.png`)
+- [x] Claude Project screenshot added (`claude_project_screenshot.png`) — **DONE**
 - [x] Academy completion screenshot added (`academy_completion.png`) — **DONE**
