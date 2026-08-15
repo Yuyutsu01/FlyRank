@@ -43,10 +43,10 @@ Documenting the status of required tools for the AI Fluency track:
 
 - **ChatGPT (OpenAI)**: Pending verification (account available / to be verified by student).
 - **Claude (Anthropic)**: Pending verification (account created / to be verified by student).
-- **Anthropic Academy**: Pending account registration at `academy.anthropic.com`.
-- **AI Fluency: Framework & Foundations**: Pending enrollment and completion of Module 1.
+- **Anthropic Academy**: **Verified** — Account registered at `academy.anthropic.com` (Evidence attached).
+- **AI Fluency: Framework & Foundations**: **Verified** — Enrolled and Module 1 completed (Evidenced by `academy_completion.png` / `AI Fluency Framework & Foundations.png.png`).
 
-*Note: In accordance with audit guidelines, tool setup and course completion are marked as pending until physical screenshot evidence is provided under `work/FL-01/`.*
+*Note: Anthropic Academy enrollment and Module 1 completion are fully verified with screenshot evidence provided in `work/FL-01/`.*
 
 ---
 
@@ -124,13 +124,13 @@ The following checklist tracks required manual setup and evidence submission:
 - [ ] ChatGPT account available
 - [ ] Claude account created
 - [ ] Claude Project configured (`Shivam — AI Research & Learning`)
-- [ ] Anthropic Academy account created (`academy.anthropic.com`)
-- [ ] AI Fluency: Framework & Foundations enrolled
-- [ ] First module completed (*Collaborating with AI Effectively, Efficiently, Ethically, and Safely*)
+- [x] Anthropic Academy account created (`academy.anthropic.com`) — **Verified**
+- [x] AI Fluency: Framework & Foundations enrolled — **Verified**
+- [x] First module completed (*Collaborating with AI Effectively, Efficiently, Ethically, and Safely*) — **Verified**
 - [ ] Claude Project screenshot added (`work/FL-01/claude_project_screenshot.png`)
-- [ ] Academy completion screenshot added (`work/FL-01/academy_completion.png`)
+- [x] Academy completion screenshot added (`work/FL-01/academy_completion.png`) — **Verified**
 
 ---
-*Placeholder references for evidence screenshots:*
-- Screenshot 1: `![Claude Project Screenshot](claude_project_screenshot.png)`
-- Screenshot 2: `![Anthropic Academy Completion Screenshot](academy_completion.png)`
+*Evidence Screenshots:*
+- Screenshot 1 (Claude Project): `![Claude Project Screenshot](claude_project_screenshot.png)` (Pending upload)
+- Screenshot 2 (Anthropic Academy): ![Anthropic Academy Completion Screenshot](academy_completion.png)
