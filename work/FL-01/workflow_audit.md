@@ -41,10 +41,12 @@ Tasks are classified using Ethan Mollick's four-tier framework:
 
 Documenting the status of required tools for the AI Fluency track:
 
-- **ChatGPT (OpenAI)**: **Verified** — Account available and active for cross-model verification.
-- **Claude (Anthropic)**: **Verified** — Account created and active for reasoning and project workflows.
+- **ChatGPT (OpenAI)**: **Verified** — Account active (Evidenced by `chatgpt_account_screenshot.png` / `Screenshot 2026-08-15 232029.png`).
+- **Claude (Anthropic)**: **Verified** — Account created & active (Evidenced by `claude_account_screenshot.png` / `Screenshot 2026-08-15 232211.png`).
 - **Anthropic Academy**: **Verified** — Account registered at `academy.anthropic.com` (Evidence attached).
 - **AI Fluency: Framework & Foundations**: **Verified** — Enrolled and Module 1 completed (Evidenced by `academy_completion.png` / `AI Fluency Framework & Foundations.png.png`).
+
+*Note: All tool accounts, project configurations, and Anthropic Academy course completions are fully verified with screenshot evidence provided in `work/FL-01/`.*
 
 ---
 
@@ -131,3 +133,5 @@ The following checklist tracks required manual setup and evidence submission:
 *Evidence Screenshots:*
 - Screenshot 1 (Claude Project): ![Claude Project Screenshot](claude_project_screenshot.png)
 - Screenshot 2 (Anthropic Academy): ![Anthropic Academy Completion Screenshot](academy_completion.png)
+- Screenshot 3 (ChatGPT Account): ![ChatGPT Account Screenshot](chatgpt_account_screenshot.png)
+- Screenshot 4 (Claude Account): ![Claude Account Screenshot](claude_account_screenshot.png)
