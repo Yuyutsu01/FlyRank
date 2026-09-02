@@ -1,0 +1,18 @@
+{
+  "assignment": "ML-07: Baseline Score",
+  "signals_audited": [
+    "impressions_90d",
+    "days_since_last_update"
+  ],
+  "signal_verdicts": {
+    "impressions_90d": "CONFIRMED",
+    "days_since_last_update": "CONFIRMED"
+  },
+  "baseline_rule": "log1p(impressions_90d) * (days_since_last_update/100) * (1 + avg_position/10)",
+  "reason_code": "HIGH_IMPRESSIONS_STALE_POSITION",
+  "action_label": "REFRESH_PRIORITY",
+  "total_rows_scored": 30000,
+  "baseline_precision_at_50": 0.48,
+  "base_rate": 0.5420666666666667,
+  "csv_generated": "work/outputs/baseline_action_score.csv"
+}
