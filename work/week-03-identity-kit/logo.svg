@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Container Background -->
+  <rect width="512" height="512" rx="96" fill="#0F172A"/>
+  
+  <!-- Subtle Outer Accent Ring -->
+  <rect x="16" y="16" width="480" height="480" rx="80" fill="none" stroke="#2563EB" stroke-width="12" opacity="0.8"/>
+  
+  <!-- Monogram "SS" Geometry -->
+  <g fill="none" stroke-width="38" stroke-linecap="round" stroke-linejoin="round">
+    <!-- First 'S' (Electric Blue) -->
+    <path d="M 215 165 C 215 130, 145 130, 145 165 C 145 210, 215 210, 215 255 C 215 295, 145 295, 145 260" stroke="#2563EB"/>
+    <!-- Second 'S' (Off White) -->
+    <path d="M 365 215 C 365 180, 295 180, 295 215 C 295 260, 365 260, 365 305 C 365 345, 295 345, 295 310" stroke="#F8FAFC"/>
+  </g>
+  
+  <!-- Precision Accent Dot -->
+  <circle cx="390" cy="385" r="18" fill="#2563EB"/>
+</svg>
