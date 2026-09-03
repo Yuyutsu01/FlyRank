@@ -1,0 +1,600 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Search Ranking & Discoverability Capstone — Shivam Sharma</title>
+  <meta name="description" content="Machine Learning Capstone: Ranking Signal Analysis and Content Opportunity Scoring for Search Discoverability.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-main: #0F172A;
+      --color-text: #111827;
+      --color-muted: #475569;
+      --color-bg: #F8FAFC;
+      --color-surface: #FFFFFF;
+      --color-border: #E2E8F0;
+      --color-accent: #2563EB;
+      --color-accent-light: #EFF6FF;
+      --color-success: #10B981;
+      --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      padding: 0;
+    }
+
+    header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-link {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--color-main);
+      text-decoration: none;
+      font-size: 1.125rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links a {
+      color: var(--color-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-left: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto 5rem;
+      padding: 0 1.5rem;
+    }
+
+    .paper-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .paper-tag {
+      display: inline-block;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      line-height: 1.25;
+      color: var(--color-main);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .meta-byline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--color-muted);
+    }
+
+    .meta-byline span strong {
+      color: var(--color-main);
+    }
+
+    .abstract-box {
+      background: #FFFFFF;
+      border-left: 4px solid var(--color-accent);
+      border-radius: 6px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0 3rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .abstract-title {
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .abstract-text {
+      font-size: 1rem;
+      color: #334155;
+      line-height: 1.75;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-main);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--color-main);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 0.75rem 0 1.25rem 1.5rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      background: #F1F5F9;
+      color: #0F172A;
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+
+    th {
+      background: #F8FAFC;
+      color: var(--color-main);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      font-family: var(--font-heading);
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      color: #334155;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr.highlight-row {
+      background: #F0FDF4;
+      font-weight: 600;
+    }
+
+    .chart-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .chart-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .chart-caption {
+      font-size: 0.8125rem;
+      color: var(--color-muted);
+      font-style: italic;
+    }
+
+    .recommendation-card {
+      background: var(--color-surface);
+      border-left: 4px solid var(--color-accent);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .recommendation-card.anti-card {
+      border-left-color: #EF4444;
+      background: #FEF2F2;
+    }
+
+    .rec-tier {
+      font-family: var(--font-heading);
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .rec-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-main);
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: var(--color-main);
+      color: #94A3B8;
+      padding: 3rem 1.5rem;
+      font-size: 0.875rem;
+      border-top: 1px solid #1E293B;
+    }
+
+    .footer-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-credit {
+      color: #F8FAFC;
+      font-weight: 500;
+    }
+
+    .footer-credit a {
+      color: #60A5FA;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="../" class="brand-link">
+        <span>Shivam Sharma</span>
+      </a>
+      <div class="nav-links">
+        <a href="../">Home</a>
+        <a href="#results">Results</a>
+        <a href="#recommendations">Playbook</a>
+        <a href="#reproducibility">Reproducibility</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="paper-header">
+        <span class="paper-tag">FlyRank ML Capstone • Ranking Signal Analysis</span>
+        <h1>Google Search Ranking & Discoverability Capstone</h1>
+        <div class="meta-byline">
+          <span><strong>Author:</strong> Shivam Sharma</span>
+          <span><strong>Lane:</strong> Ranking Signal Analysis</span>
+          <span><strong>Date:</strong> September 2026</span>
+          <span><strong>Evaluation:</strong> Client-Holdout Validation</span>
+        </div>
+      </header>
+
+      <!-- SECTION 1: TITLE + ABSTRACT -->
+      <div class="abstract-box">
+        <div class="abstract-title">Abstract</div>
+        <p class="abstract-text">
+          Modern search visibility optimization faces severe editorial resource bottlenecks, where content teams must decide which decaying assets justify intensive refresh engineering. 
+          Using the FlyRank internship dataset (spanning 30,000 anonymized content records across 32 client domains), we examine which pre-period search and engagement signals correlate with organic traffic decay. 
+          We implement an honest client-holdout evaluation (<code>GroupShuffleSplit</code> across client portfolios) and train a depth-constrained Random Forest model against a transparent heuristic baseline. 
+          The learned model achieves a <code>Precision@50 = 0.780</code> compared to <code>0.220</code> for the baseline rule, generating a 3.55x lift in identifying genuinely declining content assets. 
+          These directional findings demonstrate that search exposure volume, ranking position slippage, and CTR gaps serve as robust leading indicators for editorial prioritization.
+        </p>
+      </div>
+
+      <!-- SECTION 2: INTRODUCTION / PROBLEM STATEMENT -->
+      <section id="introduction">
+        <h2>2. Introduction & Problem Statement</h2>
+        <p>
+          Organic search traffic represents the core acquisition engine for modern digital publications. However, search engine results pages (SERPs) are volatile: algorithm updates, emerging competitors, and changing user search intent continuously erode page rankings. Editorial and SEO teams operate under severe capacity limits; a publication with 2,000 articles can realistically refresh only 30 to 50 URLs per month.
+        </p>
+        <p>
+          This capstone addresses a concrete operational decision: <strong>Which specific content URLs should an editorial team prioritize for refresh optimization to protect organic traffic?</strong>
+        </p>
+        <p>
+          Historically, content teams rely on crude heuristics, such as refreshing articles solely because they are older than 180 days. This creates severe misallocation: writers spend hours tweaking stable evergreen reference guides while high-exposure decaying articles slide down SERPs unnoticed. By reframing content refresh prioritization as a predictive ranking problem, this research builds an evidence-backed opportunity queue.
+        </p>
+      </section>
+
+      <!-- SECTION 3: DATA -->
+      <section id="data">
+        <h2>3. Data Inventory & Safety</h2>
+        <p>
+          The analysis leverages the FlyRank Machine Learning Internship warehouse release (<code>hf://datasets/FlyRank/internship-warehouse</code>, build v20260703). The complete enterprise warehouse comprises over 78.8 million daily performance rows across 104 client domains and 519,606 unique URLs.
+        </p>
+        <p>
+          Our study focuses on the primary clean snapshot: <code>data/raw/content_refresh_anonymized.csv</code>, representing 30,000 pseudonymized content items across 32 client portfolios aggregated over a 90-day pre-period observation window.
+        </p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Warehouse Table</th>
+                <th>Row Count</th>
+                <th>Grain</th>
+                <th>Inclusion Status & Justification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>content_refresh_anonymized.csv</code></td>
+                <td>30,000</td>
+                <td>1 row per content item</td>
+                <td><strong>Included (Primary)</strong>: 90-day search exposure, position, CTR, and staleness.</td>
+              </tr>
+              <tr>
+                <td><code>dim_clients</code></td>
+                <td>104</td>
+                <td>1 row per client</td>
+                <td><strong>Included for Grouping</strong>: Used strictly to enforce client-holdout partitions.</td>
+              </tr>
+              <tr>
+                <td><code>fact_content_daily_sample</code></td>
+                <td>~11.7M</td>
+                <td>Daily content record</td>
+                <td><strong>Excluded</strong>: June 2026 sealed test partition; preserved to prevent temporal leakage.</td>
+              </tr>
+              <tr>
+                <td><code>trend_pct</code> & <code>trend_direction</code></td>
+                <td>30,000</td>
+                <td>Outcome metrics</td>
+                <td><strong>Excluded from Features</strong>: Strictly excluded from input matrix to prevent target leakage.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Public Safety Compliance:</strong> All client names, raw search queries, and external domains have been pseudonymized. Zero private credentials or unanonymized data are committed or exposed.
+        </p>
+      </section>
+
+      <!-- SECTION 4: METHODOLOGY -->
+      <section id="methodology">
+        <h2>4. Methodology</h2>
+        <p>
+          To ensure scientific rigor and prevent artificial metric inflation, the modeling framework enforces strict evaluation and leakage controls:
+        </p>
+        <ul>
+          <li><strong>Target Label Formulation</strong>: Binary indicator <code>is_declining_label</code>, defined as 1 if the post-period organic traffic trend was negative (<code>trend_direction == 'down'</code>), and 0 otherwise. Base rate across the dataset is 54.2%.</li>
+          <li><strong>Decision-Time Features</strong>: Only 5 features available prior to the outcome window were included: <code>impressions_90d</code>, <code>avg_position</code>, <code>ctr_gap</code> (expected CTR tier minus observed CTR), <code>days_since_last_update</code>, and <code>word_count</code>.</li>
+          <li><strong>Grouped Split Design</strong>: Standard random splitting leaks client-level domain authority and CMS structure. We implement <code>GroupShuffleSplit</code> on <code>client_id</code> (75% train / 25% test, <code>random_state=42</code>). The test split consists of 7,115 rows across 8 completely held-out client domains with zero overlap.</li>
+          <li><strong>Transparent Heuristic Baseline</strong>: We construct a multiplicative rule scoring pages by exposure, age, and SERP position:
+            <br>
+            <code>Score = log(1 + impressions) * (days_since_update / 100) * (1 + avg_position / 10)</code>.
+          </li>
+          <li><strong>Learned Model</strong>: Random Forest Classifier (<code>n_estimators=100, max_depth=6, random_state=42</code>) wrapped in a Scikit-Learn pipeline with median imputation. Constraining tree depth prevents overfitting while capturing non-linear threshold interactions.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 5: RESULTS -->
+      <section id="results">
+        <h2>5. Results</h2>
+        <p>
+          Both the heuristic baseline and learned models were evaluated on the identical held-out test split of 7,115 URLs. The primary metric is <strong>Precision@50</strong>: the proportion of the top 50 ranked URLs that genuinely suffered traffic decline.
+        </p>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Precision@10</th>
+                <th>Precision@20</th>
+                <th>Precision@50 (Primary)</th>
+                <th>Lift over Baseline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dataset Base Rate (Random Chance)</td>
+                <td>0.517</td>
+                <td>0.517</td>
+                <td>0.517</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Week-4 Heuristic Baseline Rule</td>
+                <td>0.200</td>
+                <td>0.200</td>
+                <td>0.220</td>
+                <td>1.00x (Baseline)</td>
+              </tr>
+              <tr>
+                <td>Logistic Regression Pipeline</td>
+                <td>0.600</td>
+                <td>0.650</td>
+                <td>0.680</td>
+                <td>3.09x (+0.460)</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>Random Forest Classifier (Champion)</td>
+                <td>1.000</td>
+                <td>0.850</td>
+                <td>0.780</td>
+                <td>3.55x (+0.560)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="chart-card">
+          <img src="assets/precision_comparison.png" alt="Precision@K Comparison on Held-Out Clients">
+          <div class="chart-caption">Figure 1: Precision@K ranking performance across the top 10, 20, and 50 queues on unseen client domains.</div>
+        </div>
+
+        <p>
+          <strong>Key Empirical Findings:</strong>
+          The Random Forest model achieves a <strong>Precision@50 of 0.780</strong>, successfully identifying 39 declining URLs in the top 50 queue. In contrast, the heuristic baseline achieves only <strong>0.220</strong> (11 out of 50), performing worse than random guessing.
+        </p>
+
+        <div class="chart-card">
+          <img src="assets/feature_importance.png" alt="Feature Importance Ranking">
+          <div class="chart-caption">Figure 2: Mean Decrease in Impurity (MDI) feature importances for the Random Forest model.</div>
+        </div>
+
+        <p>
+          <strong>Why the Baseline Failed:</strong> Feature importance analysis reveals that <code>impressions_90d</code> (35.8%) and <code>avg_position</code> (23.5%) account for nearly 60% of predictive power. <code>days_since_last_update</code> accounts for only <strong>6.7%</strong>. The heuristic baseline failed because it heavily penalized older URLs, prioritizing stable evergreen guides while ignoring high-exposure URLs actively sliding from rank 3 to rank 8.
+        </p>
+      </section>
+
+      <!-- SECTION 6: LIMITATIONS & HONEST FRAMING -->
+      <section id="limitations">
+        <h2>6. Limitations & Honest Framing</h2>
+        <p>
+          In accordance with scientific integrity and responsible AI principles, we explicitly document the boundary conditions and limitations of this study:
+        </p>
+        <ul>
+          <li><strong>Directional Associations, Not Causal Claims</strong>: This analysis documents statistical associations observed in telemetry data. We do not claim that refreshing a page causally guarantees ranking recovery.</li>
+          <li><strong>No Proprietary Algorithmic Proof</strong>: These models observe external behavioral telemetry. They do not reverse-engineer or prove Google's internal ranking algorithms.</li>
+          <li><strong>Static Horizon</strong>: The 90-day aggregate snapshot smooths out intra-week search volatility and seasonal query spikes.</li>
+          <li><strong>Omitted Telemetry</strong>: High-cardinality external signals (such as competitor backlink velocity or algorithmic broad core update timing) were not available in the tabular snapshot.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 7: RANKED RECOMMENDATIONS -->
+      <section id="recommendations">
+        <h2>7. Ranked Recommendations (Action Playbook)</h2>
+        <p>
+          Based on our verified model coefficients and decision trees, we provide a concrete, 3-tier action playbook for editorial and SEO teams:
+        </p>
+
+        <div class="recommendation-card">
+          <div class="rec-tier" style="color: #2563EB;">Priority 1 • Highest Impact & Confidence</div>
+          <div class="rec-title">Target High-Exposure URLs in Position Decay (Rank 3–10)</div>
+          <p>URLs with <code>impressions_90d > 1,000</code> and an average position sliding between 3.0 and 10.0 represent the greatest immediate traffic risk. Deploy editorial updates, refresh factual references, and strengthen user intent satisfaction.</p>
+        </div>
+
+        <div class="recommendation-card">
+          <div class="rec-tier" style="color: #10B981;">Priority 2 • High Return / Low Effort</div>
+          <div class="rec-title">Overhaul SERP Snippets for Top-5 URLs with High CTR Gaps</div>
+          <p>Pages holding ranks 1–5 with a <code>ctr_gap > 0.15</code> are suffering from snippet fatigue. Rewrite title tags and meta descriptions to improve SERP click-through rates without modifying the underlying body text.</p>
+        </div>
+
+        <div class="recommendation-card">
+          <div class="rec-tier" style="color: #6366F1;">Priority 3 • Medium Term</div>
+          <div class="rec-title">Expand Thin Content on Competitive Informational Topics</div>
+          <p>URLs with <code>word_count < 600</code> competing in informational queries exhibit higher decline probabilities. Expand content depth with structured Q&A and comprehensive sub-headings.</p>
+        </div>
+
+        <div class="recommendation-card anti-card">
+          <div class="rec-tier" style="color: #DC2626;">Anti-Recommendation • Waste of Editorial Resources</div>
+          <div class="rec-title">Do NOT Schedule Content Updates Based Solely on Age</div>
+          <p>Content staleness (<code>days_since_last_update</code>) accounts for only 6.7% of predictive importance. Refreshing URLs simply because they are 180+ days old wastes valuable writer hours on stable evergreen assets.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 8: REPRODUCIBILITY -->
+      <section id="reproducibility">
+        <h2>8. Reproducibility</h2>
+        <p>
+          All experiments, pipelines, and evaluation splits are 100% reproducible directly from the project repository:
+        </p>
+        <ul>
+          <li><strong>GitHub Repository</strong>: <a href="https://github.com/Yuyutsu01/FlyRank" target="_blank" rel="noopener">https://github.com/Yuyutsu01/FlyRank</a></li>
+          <li><strong>Capstone Modeling Notebook</strong>: <a href="https://github.com/Yuyutsu01/FlyRank/blob/main/work/notebooks/capstone.ipynb" target="_blank" rel="noopener">work/notebooks/capstone.ipynb</a></li>
+          <li><strong>Week-5 Model Exploration</strong>: <a href="https://github.com/Yuyutsu01/FlyRank/blob/main/work/notebooks/w05_model.ipynb" target="_blank" rel="noopener">work/notebooks/w05_model.ipynb</a></li>
+          <li><strong>Random Seeds & Environment</strong>: Fixed random seed <code>42</code> used across all splits and tree initializations; Python 3.11 with Scikit-Learn 1.4+, Pandas, and NumPy.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 9: ACKNOWLEDGMENTS & DATA CREDIT -->
+      <section id="acknowledgments">
+        <h2>9. Acknowledgments & Data Credit</h2>
+        <p>
+          This research was conducted as part of the FlyRank Machine Learning Internship Capstone program. 
+          <strong>Built on the FlyRank ML Internship dataset</strong>, hosted and provided by <a href="https://flyrank.ai" target="_blank" rel="noopener">https://flyrank.ai</a>.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-credit">
+        Built on the FlyRank ML Internship dataset • <a href="https://flyrank.ai" target="_blank" rel="noopener">FlyRank.ai</a>
+      </div>
+      <p style="color: #64748B; font-size: 0.8125rem;">
+        © 2026 Shivam Sharma. Research Capstone: Ranking Signal Analysis. Observational decision-support analysis.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

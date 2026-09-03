@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shivam Sharma — AI / ML Research & Engineering</title>
+  <title>Shivam Sharma - AI / ML Research & Engineering</title>
   
   <!-- Typography: Space Grotesk & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,16 +11,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+  <style>
+    .featured-work {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      text-align: left;
+    }
+    .featured-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .featured-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--navy-dark);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.25rem;
+      transition: color 0.15s ease;
+    }
+    .featured-title:hover {
+      color: var(--accent-blue);
+    }
+    .featured-desc {
+      font-size: 0.875rem;
+      color: #64748B;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
   <main class="container">
     <div class="card">
       <div class="status-indicator">
         <span class="status-dot"></span>
-        <span class="status-text">Portfolio Foundation — Live</span>
+        <span class="status-text">Portfolio Live</span>
       </div>
       <h1 class="name">Shivam Sharma</h1>
       <p class="role">AI / ML Research &amp; Engineering</p>
+
+      <div class="featured-work">
+        <div class="featured-label">Featured Research Capstone</div>
+        <a href="capstone/" class="featured-title">Google Search Ranking &amp; Discoverability Capstone &rarr;</a>
+        <p class="featured-desc">Ranking signal analysis and content opportunity scoring on 30,000 search performance records. Evaluating learned ML models vs. heuristic baselines on client-holdout splits.</p>
+      </div>
     </div>
   </main>
 </body>
