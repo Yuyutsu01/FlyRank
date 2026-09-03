@@ -1,11 +1,11 @@
-﻿# Real MCP Tasks & Tool Execution Evidence
+# Real MCP Tasks & Tool Execution Evidence
 
 **Track:** General AI Fluency | FL-05  
 **Topic:** Real Model Context Protocol (MCP) Tool Execution  
 **MCP Server Connected:** `@modelcontextprotocol/server-filesystem` (Local Filesystem Server)  
 **Host Application:** Claude Desktop (`claude_desktop_config.json`)  
 **Target Workspace:** `C:\Users\shiva\OneDrive\Desktop\FlyRank`  
-**Status:** Executed & Documented  
+**Status:** Executed, Documented & Verified with Real Screenshots  
 
 ---
 
@@ -42,7 +42,7 @@ Normal closed-model chat has zero access to the host file system. The Filesystem
 
 ### Task 1: Repository Directory Audit & File Inspection
 
-- **User Request**: *"List the files in the `work/outputs` directory and verify which run receipts or generated data files currently exist."*
+- **User Request**: *"List the files in the `work/outputs` directory and check what run receipts or CSV files exist."*
 - **MCP Server / Connector**: `filesystem` (`@modelcontextprotocol/server-filesystem`)
 - **Tool Called**: `list_directory`
 - **Tool Input**:
@@ -69,6 +69,8 @@ Normal closed-model chat has zero access to the host file system. The Filesystem
 - **Why Normal Chat Alone Could NOT Do This**: 
   Plain Claude or ChatGPT has no access to a user's local operating system or workspace SSD. Without an MCP connector, the model would either hallucinate the directory contents or state that it cannot access local files.
 - **Result Obtained**: Confirmed that both the 30,000-row ranked queue CSV and the JSON run receipt generated in ML-07 exist locally.
+- **Visual Evidence**:  
+  ![Task 1 - list_directory Screenshot](screenshots/mcp_task1_list_directory.png)
 
 ---
 
@@ -107,6 +109,8 @@ Normal closed-model chat has zero access to the host file system. The Filesystem
 - **Why Normal Chat Alone Could NOT Do This**:
   The JSON receipt was created locally during the ML-07 notebook run and is uncommitted to public training data. A standard LLM cannot inspect local private run receipts. Through MCP `read_file`, the model read the actual raw JSON and extracted the exact metric (`0.240`) without guessing.
 - **Result Obtained**: Grounded verification of the ML-07 baseline metric (`Precision@50 = 0.240` vs. `Base Rate = 0.542`) and the two audited signals (`impressions_90d`, `days_since_last_update`).
+- **Visual Evidence**:  
+  ![Task 2 - read_file Screenshot](screenshots/mcp_task2_read_json.png)
 
 ---
 
@@ -141,16 +145,15 @@ Normal closed-model chat has zero access to the host file system. The Filesystem
 - **Why Normal Chat Alone Could NOT Do This**:
   Standard chat interfaces would guess generic modern color palettes or hallucinate Tailwind color variables. The MCP connector enabled Claude to read the project's canonical specification directly from local markdown, guaranteeing 100% token fidelity.
 - **Result Obtained**: Verified the exact 4-color palette tokens (`#0F172A`, `#111827`, `#F8FAFC`, `#2563EB`) and font pairings directly from the repository source of truth.
+- **Visual Evidence**:  
+  ![Task 3 - read_markdown Screenshot](screenshots/mcp_task3_read_markdown.png)
 
 ---
 
-## 3. Manual Screenshot Capture Checklist for Student
+## 3. Real Screenshot Evidence Checklist
 
-As required by the assignment, capture screenshots of these tool executions inside Claude Desktop:
+The following screenshots have been captured directly from Claude Desktop running tool calls on local files and are saved under `work/fl-05-agent/screenshots/`:
 
-- [ ] **Screenshot 1: MCP Server Active in Claude Desktop**:  
-  Capture the Claude Desktop window showing the attached hammer/tools icon indicating the `filesystem` MCP server is active.
-- [ ] **Screenshot 2: Task 1 / Task 2 Tool Execution**:  
-  Capture the chat interface displaying the expanded `list_directory` or `read_file` tool call badge with input parameters and returned JSON output.
-- [ ] **Screenshot 3: Grounded Answer Based on MCP Tool Output**:  
-  Capture Claude's final response synthesizing the local data read via MCP.
+- [x] **Task 1 Evidence**: `screenshots/mcp_task1_list_directory.png` (Showing `list_directory` tool call badge, arguments, and local files output).
+- [x] **Task 2 Evidence**: `screenshots/mcp_task2_read_json.png` (Showing `read_file` tool call badge reading `baseline_run_receipt.json` and reporting Precision@50).
+- [x] **Task 3 Evidence**: `screenshots/mcp_task3_read_markdown.png` (Showing `read_file` tool call reading `style-note.md` and reporting exact HEX tokens).
